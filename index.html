@@ -249,6 +249,8 @@ const QS = [
    exit: a => a.q1 === '해당하지 않아요' ? 'screenout' : null},
   {id:'q2', n:2, col:'Q02_학기', type:'radio', required:true,
    title:'지금 몇 학기째인가요?', options:['1~2학기','3~4학기','5학기 이상','수료했어요']},
+  {id:'q2b', n:2, spr:'caseolum', col:'Q02b_전공', type:'radio', required:true,
+   title:'전공 계열을 골라 주세요.', options:['디자인·예술','인문·사회','이공·의약','그 밖의 계열']},
   {id:'q3', n:3, col:'Q03_최근경험', type:'radio', required:true,
    title:'최근 3개월 동안,\n대학원 생활에서 좌절 또는\n실패 경험이 있었나요?', note:'연구, 학업, 대학원 생활 모두 포함해요.',
    options:['있었어요','없었어요','잘 기억나지 않아요','답하고 싶지 않아요']},
@@ -384,7 +386,7 @@ if (TEST_MODE) $('testmode').hidden = false;
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const label = o => Array.isArray(o) ? o[0] : (typeof o === 'string' ? o : o.label);
 const sprite = name => SPRITES[name] || '';
-const spriteFor = q => sprite(CHAR_ORDER[(q.n - 1) % CHAR_ORDER.length]);
+const spriteFor = q => sprite(q.spr || CHAR_ORDER[(q.n - 1) % CHAR_ORDER.length]);
 
 function iconSvg(name){
   const ic = ICONS.icons && ICONS.icons[name]; if (!ic) return '';
